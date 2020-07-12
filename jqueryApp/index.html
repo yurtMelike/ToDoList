@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+    <style>
+        .list {
+            margin-left: 10px;
+            background: white;
+            color: red;
+            border:none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Yapılacaklar Listesi</h1>
+    <input type="text" placeholder="Yeni bir yapılacak giriniz."/>
+    <button id="addButton">Ekle</button>
+    <ol id="listemiz"></ol>
+
+
+    <script>
+        $(function () {
+            $("#addButton").on("click", function () {
+                var inputValue = $("input").val();
+                if (inputValue != "") {
+                    var listItem = $("<li></li>").text(inputValue);
+                    $(listItem).append("<button class=\"list\">X</button>");
+                    $("#listemiz").append(listItem);
+                    $("input").val("");
+                    $(".list").on("click", function () {
+                        $(this).parent().remove();
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
